@@ -1,6 +1,5 @@
 <template>
-	<hr />
-	<footer>footer zone</footer>
+	<h1 class="text-red-700">ErrorPage</h1>
 </template>
 
 <script>
