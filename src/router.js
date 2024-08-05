@@ -1,7 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomePage from "./views/HomePage.vue";
-import AboutPage from "./views/AboutPage.vue";
-// import ErrorPage from "./views/ErrorPage.vue";
+import BoardPage from "./views/BoardPage.vue";
+import ErrorPage from "./views/ErrorPage.vue";
+import PostPage from "./views/PostPage.vue";
 
 const routes = [
 	{
@@ -10,15 +11,20 @@ const routes = [
 		component: HomePage,
 	},
 	{
-		path: "/about",
-		name: "AboutPage",
-		component: AboutPage,
+		path: "/board",
+		name: "BoardPage",
+		component: BoardPage,
 	},
-	// {
-	// 	path: "*",
-	// 	name: "ErrorPage",
-	// 	component: ErrorPage,
-	// },
+	{
+		path: "/post",
+		name: "PostPage",
+		component: PostPage,
+	},
+	{
+		path: "/:pathMatch(.*)*",
+		name: "ErrorPage",
+		component: ErrorPage,
+	},
 ];
 
 const router = createRouter({
