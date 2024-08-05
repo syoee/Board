@@ -1,4 +1,10 @@
-import { createApp } from 'vue'
-import App from './App.vue'
+import { createApp } from "vue";
+import App from "./App.vue";
+import router from "./router.js";
+import axios from "axios";
+import "./assets/tailwind.css";
 
-createApp(App).mount('#app')
+const app = createApp(App);
+app.use(router);
+app.config.globalProperties.$axios = axios;
+app.mount("#app");
