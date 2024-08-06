@@ -13,13 +13,13 @@
 		<div class="absolute bottom-0 w-full flex justify-center py-5 gap-20">
 			<button
 				@click="goBoard"
-				class="px-5 py-3 text-white bg-green-500 rounded-lg text-4xl font-bold"
+				class="px-5 py-3 text-white hover:bg-blue-800 bg-blue-600 rounded-lg text-4xl font-bold"
 			>
 				생 성
 			</button>
 			<button
 				@click="goHome"
-				class="px-5 py-3 text-white bg-green-500 rounded-lg text-4xl font-bold"
+				class="px-5 py-3 text-white hover:bg-blue-800 bg-blue-600 rounded-lg text-4xl font-bold"
 			>
 				취 소
 			</button>

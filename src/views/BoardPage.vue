@@ -10,13 +10,13 @@
 		<div class="absolute bottom-0 w-full flex justify-center py-5 gap-20">
 			<button
 				@click="goModify"
-				class="px-5 py-3 bg-green-500 text-white rounded-lg text-4xl font-bold"
+				class="px-5 py-3 bg-blue-600 text-white hover:bg-blue-800 rounded-lg text-4xl font-bold"
 			>
 				수 정
 			</button>
 			<button
 				@click="deletePost"
-				class="px-5 py-3 bg-green-500 text-white rounded-lg text-4xl font-bold"
+				class="px-5 py-3 bg-blue-600 text-white hover:bg-blue-800 rounded-lg text-4xl font-bold"
 			>
 				삭 제
 			</button>
@@ -66,8 +66,8 @@ export default {
 		},
 		// 사용자가 확인 대화상자에서 확인을 누르면 게시글을 삭제하고 홈 페이지로 이동
 		deletePost() {
-			if (confirm("정말로 삭제하시겠습니까?")) {
-				alert("삭제완료");
+			if (confirm("정말 삭제하시겠습니까?")) {
+				alert("삭제되었습니다.");
 				this.$router.push("/");
 			}
 		},

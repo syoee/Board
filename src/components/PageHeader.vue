@@ -1,6 +1,6 @@
 <template>
 	<div class="flex justify-center">
-		<button @click="goHome" class="my-5 text-5xl font-black">게시판</button>
+		<button @click="goHome" class="my-7 text-5xl font-black">게시판</button>
 	</div>
 	<hr />
 </template>
