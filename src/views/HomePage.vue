@@ -10,7 +10,7 @@
 				{{ post.id }}. {{ post.title }}
 			</li>
 		</ul>
-		<div class="flex justify-between items-center mt-5">
+		<div class="flex justify-center items-center gap-4 mt-14 mb-5">
 			<button
 				@click="prevPage"
 				:disabled="currentPage === 1"
@@ -18,7 +18,21 @@
 			>
 				이전
 			</button>
-			<span>페이지 {{ currentPage }}</span>
+			<div class="flex gap-2">
+				<!-- 페이지 숫자 버튼 렌더링 -->
+				<button
+					v-for="page in totalPagesArray"
+					:key="page"
+					@click="goToPage(page)"
+					:class="{
+						'px-2 text-black underline underline-offset-4 text-xl font-extrabold':
+							page === currentPage,
+						'px-2 text-black text-xl font-thin': page !== currentPage,
+					}"
+				>
+					{{ page }}
+				</button>
+			</div>
 			<button
 				@click="nextPage"
 				:disabled="currentPage === totalPages"
@@ -31,7 +45,7 @@
 	<div class="flex justify-end mr-10">
 		<button
 			@click="goPost"
-			class="px-3 py-2 bg-green-500 text-white rounded-lg"
+			class="px-3 py-2 bg-green-500 text-black rounded-lg hover:text-white"
 		>
 			글쓰기
 		</button>
@@ -42,7 +56,6 @@
 import { goBoard, goPost } from "@/utils/navigation";
 
 export default {
-	name: "HomePage",
 	data() {
 		return {
 			posts: [
@@ -65,13 +78,19 @@ export default {
 				{ id: 17, title: "열일곱 번째 게시글" },
 			],
 			currentPage: 1,
-			postsPerPage: 10,
+			postsPerPage: 15,
 		};
 	},
 	computed: {
+		// 전체 페이지 수 계산
 		totalPages() {
 			return Math.ceil(this.posts.length / this.postsPerPage);
 		},
+		// 전체 페이지 수를 배열 형태로 반환
+		totalPagesArray() {
+			return Array.from({ length: this.totalPages }, (_, i) => i + 1);
+		},
+		// 현재 페이지에 해당하는 게시글들을 반환
 		paginatedPosts() {
 			const start = (this.currentPage - 1) * this.postsPerPage;
 			const end = start + this.postsPerPage;
@@ -79,17 +98,28 @@ export default {
 		},
 	},
 	methods: {
+		// id에 맞는 Board페이지로 이동
 		goBoard(postId) {
 			goBoard(this.$router, postId);
 		},
+		// Post페이지로 이동
 		goPost() {
 			goPost(this.$router);
 		},
+		// 사용자가 페이지 버튼을 클릭할 때 호출되는 메서드
+		// 페이지 번호를 받아서 currentPage를 업데이트
+		goToPage(pageNumber) {
+			if (pageNumber >= 1 && pageNumber <= this.totalPages) {
+				this.currentPage = pageNumber;
+			}
+		},
+		// 다음으로 이동
 		nextPage() {
 			if (this.currentPage < this.totalPages) {
 				this.currentPage++;
 			}
 		},
+		// 이전으로 이동
 		prevPage() {
 			if (this.currentPage > 1) {
 				this.currentPage--;
