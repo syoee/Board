@@ -1,5 +1,5 @@
-export function goBoard(router) {
-	router.push("/board");
+export function goBoard(router, postId) {
+	router.push(`/board/${postId}`);
 }
 
 export function goPost(router) {
