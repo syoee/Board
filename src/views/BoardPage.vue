@@ -62,7 +62,11 @@ export default {
 	methods: {
 		// 현재 게시글의 수정 페이지로 이동
 		goModify() {
-			this.$router.push(`/post/${this.post.id}`);
+			if (this.post && this.post.id) {
+				this.$router.push(`/post/${this.post.id}`);
+			} else {
+				alert("게시글을 찾을 수 없습니다.");
+			}
 		},
 		// 사용자가 확인 대화상자에서 확인을 누르면 게시글을 삭제하고 홈 페이지로 이동
 		deletePost() {
