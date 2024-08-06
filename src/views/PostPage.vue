@@ -15,7 +15,7 @@
 				@click="goBoard"
 				class="px-5 py-3 text-white hover:bg-blue-800 bg-blue-600 rounded-lg text-4xl font-bold"
 			>
-				생 성
+				작 성
 			</button>
 			<button
 				@click="goHome"
