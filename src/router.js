@@ -7,7 +7,7 @@ import PostPage from "./views/PostPage.vue";
 const routes = [
 	{
 		path: "/",
-		name: "Home",
+		name: "HomePage",
 		component: HomePage,
 	},
 	{

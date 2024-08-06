@@ -1,9 +1,31 @@
 <template>
-	<div class="about">
-		<h1>This is an Post page</h1>
+	<div class="flex flex-col gap-4 h-[90vh]">
+		<input
+			v-model="title"
+			placeholder="title"
+			class="w-1/2 mt-10 ml-5 py-3 pl-3 rounded-md border-solid border-2 border-gray-300 text-xl"
+		/>
+		<textarea
+			v-model="content"
+			placeholder="content"
+			class="mx-5 pl-3 pt-3 h-3/4 rounded-md border-solid border-2 border-gray-300 resize-none"
+		></textarea>
+		<div class="absolute bottom-0 w-full flex justify-center py-5 bg-green-500">
+			<button @click="goBoard" class="text-white text-4xl font-black">
+				생 성
+			</button>
+		</div>
 	</div>
 </template>
 
 <script>
-export default {};
+import { goBoard } from "@/utils/navigation";
+
+export default {
+	methods: {
+		goBoard() {
+			goBoard(this.$router);
+		},
+	},
+};
 </script>

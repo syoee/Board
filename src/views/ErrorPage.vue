@@ -1,5 +1,7 @@
 <template>
-	<h1 class="text-red-700">ErrorPage</h1>
+	<div class="flex justify-center text-red-500 text-9xl font-black">
+		ErrorPage
+	</div>
 </template>
 
 <script>
