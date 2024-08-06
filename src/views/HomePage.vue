@@ -5,7 +5,7 @@
 				v-for="post in paginatedPosts"
 				:key="post.id"
 				@click="goBoard(post.id)"
-				class="cursor-pointer hover:underline hover:underline-offset-4"
+				class="cursor-pointer hover:underline underline-offset-4"
 			>
 				{{ post.id }}. {{ post.title }}
 			</li>
@@ -45,7 +45,7 @@
 	<div class="flex justify-end mr-10">
 		<button
 			@click="goPost"
-			class="px-3 py-2 bg-green-500 text-black rounded-lg hover:text-white"
+			class="px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-800"
 		>
 			글쓰기
 		</button>
