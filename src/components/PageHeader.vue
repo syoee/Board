@@ -6,10 +6,12 @@
 </template>
 
 <script>
+import { goHome } from "@/utils/navigation";
+
 export default {
 	methods: {
 		goHome() {
-			this.$router.push("/");
+			goHome(this.$router);
 		},
 	},
 };

@@ -1,3 +1,7 @@
+export function goHome(router) {
+	router.push("/");
+}
+
 export function goBoard(router, postId) {
 	router.push(`/board/${postId}`);
 }
