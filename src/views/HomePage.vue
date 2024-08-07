@@ -54,33 +54,17 @@
 
 <script>
 import { goBoard, goPost } from "@/utils/navigation";
+import axios from "axios";
 
 export default {
 	data() {
 		return {
-			posts: [
-				{ id: 1, title: "첫 번째 게시글" },
-				{ id: 2, title: "두 번째 게시글" },
-				{ id: 3, title: "세 번째 게시글" },
-				{ id: 4, title: "네 번째 게시글" },
-				{ id: 5, title: "다섯 번째 게시글" },
-				{ id: 6, title: "여섯 번째 게시글" },
-				{ id: 7, title: "일곱 번째 게시글" },
-				{ id: 8, title: "여덟 번째 게시글" },
-				{ id: 9, title: "아홉 번째 게시글" },
-				{ id: 10, title: "열 번째 게시글" },
-				{ id: 11, title: "열한 번째 게시글" },
-				{ id: 12, title: "열두 번째 게시글" },
-				{ id: 13, title: "열세 번째 게시글" },
-				{ id: 14, title: "열네 번째 게시글" },
-				{ id: 15, title: "열다섯 번째 게시글" },
-				{ id: 16, title: "열여섯 번째 게시글" },
-				{ id: 17, title: "열일곱 번째 게시글" },
-			],
+			posts: [],
 			currentPage: 1,
 			postsPerPage: 15,
 		};
 	},
+
 	computed: {
 		// 전체 페이지 수 계산
 		totalPages() {
@@ -97,6 +81,21 @@ export default {
 			return this.posts.slice(start, end);
 		},
 	},
+
+	mounted() {
+		// 게시글 전체 불러오는 API
+		axios
+			.get(`http://localhost:8080/boards`)
+			.then((res) => {
+				this.result = res.data.result;
+				console.log(res);
+			})
+			.catch((err) => {
+				this.result = false;
+				console.log(err);
+			});
+	},
+
 	methods: {
 		// id에 맞는 Board페이지로 이동
 		goBoard(postId) {

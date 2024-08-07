@@ -29,28 +29,10 @@
 export default {
 	data() {
 		return {
-			posts: [
-				{ id: 1, title: "첫 번째 게시글", content: "첫 번째 내용" },
-				{ id: 2, title: "두 번째 게시글", content: "두 번째 내용" },
-				{ id: 3, title: "세 번째 게시글", content: "세 번째 내용" },
-				{ id: 4, title: "네 번째 게시글", content: "네 번째 내용" },
-				{ id: 5, title: "다섯 번째 게시글", content: "다섯 번째 내용" },
-				{ id: 6, title: "여섯 번째 게시글", content: "여섯 번째 내용" },
-				{ id: 7, title: "일곱 번째 게시글", content: "일곱 번째 내용" },
-				{ id: 8, title: "여덟 번째 게시글", content: "여덟 번째 내용" },
-				{ id: 9, title: "아홉 번째 게시글", content: "아홉 번째 내용" },
-				{ id: 10, title: "열 번째 게시글", content: "열 번째 내용" },
-				{ id: 11, title: "열한 번째 게시글", content: "열한 번째 내용" },
-				{ id: 12, title: "열두 번째 게시글", content: "열두 번째 내용" },
-				{ id: 13, title: "열세 번째 게시글", content: "열세 번째 내용" },
-				{ id: 14, title: "열네 번째 게시글", content: "열네 번째 내용" },
-				{ id: 15, title: "열다섯 번째 게시글", content: "열다섯 번째 내용" },
-				{ id: 16, title: "열여섯 번째 게시글", content: "열여섯 번째 내용" },
-				{ id: 17, title: "열일곱 번째 게시글", content: "열일곱 번째 내용" },
-			],
-			post: null,
+			posts: [],
 		};
 	},
+
 	// 컴포넌트가 생성될 때 URL의 id 파라미터를 사용해 해당 게시글을 posts 배열에서 찾아 post에 저장
 	created() {
 		const postId = this.$route.params.id;

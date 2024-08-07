@@ -33,8 +33,7 @@ import { goHome, goBoard } from "@/utils/navigation";
 export default {
 	data() {
 		return {
-			title: "",
-			content: "",
+			posts: [],
 		};
 	},
 	methods: {
