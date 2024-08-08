@@ -81,17 +81,16 @@ export default {
 			return this.posts.slice(start, end);
 		},
 	},
-
 	mounted() {
 		// 게시글 전체 불러오는 API
 		axios
 			.get(`http://localhost:8080/boards`)
 			.then((res) => {
-				this.result = res.data.result;
-				console.log(res);
+				// API에서 받아온 데이터를 posts에 저장
+				this.posts = res.data; // res.data가 배열이므로 그대로 할당
 			})
 			.catch((err) => {
-				this.result = false;
+				this.posts = []; // 오류가 발생하면 빈 배열로 초기화
 				console.log(err);
 			});
 	},
