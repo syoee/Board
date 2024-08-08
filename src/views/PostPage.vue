@@ -12,7 +12,7 @@
 		></textarea>
 		<div class="absolute bottom-0 w-full flex justify-center py-5 gap-20">
 			<button
-				@click="goBoard"
+				@click="submitPost"
 				class="px-5 py-3 text-white hover:bg-blue-800 bg-blue-600 rounded-lg text-4xl font-bold"
 			>
 				작 성
@@ -28,21 +28,66 @@
 </template>
 
 <script>
-import { goHome, goBoard } from "@/utils/navigation";
+import { goHome } from "@/utils/navigation";
+import axios from "axios";
 
 export default {
 	data() {
 		return {
 			title: "",
 			content: "",
+			postId: null,
 		};
 	},
+
+	created() {
+		this.postId = this.$route.params.id;
+		if (this.postId) {
+			axios
+				.get(`http://localhost:8080/boards/${this.postId}`)
+				.then((res) => {
+					this.title = res.data.title;
+					this.content = res.data.content;
+					console.log("Fetched post data:", res.data); // 디버깅용 로그
+				})
+				.catch((err) => {
+					console.log(err);
+				});
+		}
+	},
+
 	methods: {
 		goHome() {
 			goHome(this.$router);
 		},
-		goBoard() {
-			goBoard(this.$router);
+		submitPost() {
+			if (!this.title) {
+				alert("Title이 비어있습니다.");
+				return;
+			}
+			if (!this.content) {
+				alert("Content가 비어있습니다.");
+				return;
+			}
+
+			const postData = {
+				title: this.title,
+				content: this.content,
+			};
+
+			const request = this.postId
+				? axios.put(`http://localhost:8080/boards/${this.postId}`, postData)
+				: axios.post(`http://localhost:8080/boards`, postData);
+
+			request
+				.then((res) => {
+					console.log(res);
+					alert(this.postId ? "수정 완료되었습니다." : "작성 완료되었습니다.");
+					this.$router.push("/");
+				})
+				.catch((err) => {
+					console.log(err);
+				});
 		},
 	},
 };
