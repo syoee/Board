@@ -12,7 +12,7 @@
 		></textarea>
 		<div class="absolute bottom-0 w-full flex justify-center py-5 gap-20">
 			<button
-				@click="goBoard"
+				@click="submitPost"
 				class="px-5 py-3 text-white hover:bg-blue-800 bg-blue-600 rounded-lg text-4xl font-bold"
 			>
 				작 성
@@ -29,19 +29,44 @@
 
 <script>
 import { goHome, goBoard } from "@/utils/navigation";
+import axios from "axios";
 
 export default {
 	data() {
 		return {
-			posts: [],
+			title: "",
+			content: "",
 		};
 	},
+
 	methods: {
 		goHome() {
 			goHome(this.$router);
 		},
-		goBoard() {
-			goBoard(this.$router);
+		submitPost() {
+			if (!this.title) {
+				alert("Title이 비어있습니다.");
+				return;
+			}
+			if (!this.content) {
+				alert("Content가 비어있습니다.");
+				return;
+			}
+			axios
+				.post(`http://localhost:8080/boards`, {
+					title: this.title,
+					content: this.content,
+				})
+				.then((res) => {
+					// API에서 받아온 데이터를 posts에 저장
+					console.log(res);
+					alert("작성 완료되었습니다.");
+					goBoard(this.$router);
+				})
+				.catch((err) => {
+					this.posts = []; // 오류가 발생하면 빈 배열로 초기화
+					console.log(err);
+				});
 		},
 	},
 };
