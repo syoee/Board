@@ -5,9 +5,9 @@
 				v-for="post in paginatedPosts"
 				:key="post.id"
 				@click="goBoard(post.id)"
-				class="cursor-pointer hover:underline underline-offset-4"
+				class="cursor-pointer hover:underline underline-offset-4 hover:text-blue-800"
 			>
-				{{ post.id }}. {{ post.title }}
+				• {{ post.title }}
 			</li>
 		</ul>
 		<div class="flex justify-center items-center gap-4 mt-14 mb-5">

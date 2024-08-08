@@ -16,7 +16,7 @@ const routes = [
 		component: BoardPage,
 	},
 	{
-		path: "/post",
+		path: "/post/:id?",
 		name: "PostPage",
 		component: PostPage,
 	},

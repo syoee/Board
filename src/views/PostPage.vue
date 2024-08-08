@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import { goHome, goBoard } from "@/utils/navigation";
+import { goHome } from "@/utils/navigation";
 import axios from "axios";
 
 export default {
@@ -36,7 +36,24 @@ export default {
 		return {
 			title: "",
 			content: "",
+			postId: null,
 		};
+	},
+
+	created() {
+		this.postId = this.$route.params.id;
+		if (this.postId) {
+			axios
+				.get(`http://localhost:8080/boards/${this.postId}`)
+				.then((res) => {
+					this.title = res.data.title;
+					this.content = res.data.content;
+					console.log("Fetched post data:", res.data); // 디버깅용 로그
+				})
+				.catch((err) => {
+					console.log(err);
+				});
+		}
 	},
 
 	methods: {
@@ -52,19 +69,23 @@ export default {
 				alert("Content가 비어있습니다.");
 				return;
 			}
-			axios
-				.post(`http://localhost:8080/boards`, {
-					title: this.title,
-					content: this.content,
-				})
+
+			const postData = {
+				title: this.title,
+				content: this.content,
+			};
+
+			const request = this.postId
+				? axios.put(`http://localhost:8080/boards/${this.postId}`, postData)
+				: axios.post(`http://localhost:8080/boards`, postData);
+
+			request
 				.then((res) => {
-					// API에서 받아온 데이터를 posts에 저장
 					console.log(res);
-					alert("작성 완료되었습니다.");
-					goBoard(this.$router);
+					alert(this.postId ? "수정 완료되었습니다." : "작성 완료되었습니다.");
+					this.$router.push("/");
 				})
 				.catch((err) => {
-					this.posts = []; // 오류가 발생하면 빈 배열로 초기화
 					console.log(err);
 				});
 		},
